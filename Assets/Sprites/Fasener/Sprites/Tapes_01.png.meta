@@ -1,0 +1,224 @@
+fileFormatVersion: 2
+guid: 859e4edd775a20742b2ef03d4015a730
+timeCreated: 1498206972
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Tapes_01_0
+    21300002: Tapes_01_1
+    21300004: Tapes_01_2
+    21300006: Tapes_01_3
+    21300008: Tapes_01_4
+    21300010: Tapes_01_5
+    21300012: Tapes_01_6
+    21300014: Tapes_01_7
+    21300016: Tapes_01_8
+    21300018: Tapes_01_9
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 128
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Tapes_01_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 544
+        width: 816
+        height: 65
+      alignment: 9
+      pivot: {x: 0.5, y: 0.53846157}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tapes_01_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 483.05798
+        width: 816
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.49917167}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tapes_01_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 421.9266
+        width: 816
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5010485}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tapes_01_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 360.8861
+        width: 816
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.501627}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tapes_01_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 300.01736
+        width: 816
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.49975193}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tapes_01_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 238.89139
+        width: 816
+        height: 71
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4944875}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tapes_01_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 177.98636
+        width: 816
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5001949}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tapes_01_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 117.047035
+        width: 816
+        height: 70.99999
+      alignment: 9
+      pivot: {x: 0.5, y: 0.49229532}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tapes_01_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 55.84964
+        width: 816
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.50214803}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tapes_01_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 816
+        height: 64.97744
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4616987}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 98186491601434
+  assetBundleName: 
+  assetBundleVariant: 

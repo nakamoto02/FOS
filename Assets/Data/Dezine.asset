@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd34e65bc188f8b4ea7ccca91f34598b, type: 3}
+  m_Name: Dezine
+  m_EditorClassIdentifier: 
+  dezine:
+  - fastenerSprite: {fileID: 11400000, guid: 878d80127f7a0db4ea0f90415d46e4f4, type: 2}
+    frontSprite: {fileID: 21300000, guid: 2129693677fa15a469d443d698ee7f2f, type: 3}
+    backSprite: {fileID: 21300000, guid: 8e6fb735dfa9aaa4aac71595fb2c486d, type: 3}
+  - fastenerSprite: {fileID: 11400000, guid: 3803f1a0366a94a40994e2a34e14c219, type: 2}
+    frontSprite: {fileID: 21300000, guid: 8e6fb735dfa9aaa4aac71595fb2c486d, type: 3}
+    backSprite: {fileID: 21300000, guid: 76b79091205df9843871b34064f0a42a, type: 3}
+  - fastenerSprite: {fileID: 11400000, guid: 96978c0b765fb3d40baac32da6a9b6c6, type: 2}
+    frontSprite: {fileID: 21300000, guid: 145e988b9e8da3d4c966b907dfee8b32, type: 3}
+    backSprite: {fileID: 21300000, guid: d970bf74e3ec4734187fe31a173f8b08, type: 3}
+  - fastenerSprite: {fileID: 11400000, guid: 413411c8b75fb034296e3bf7b61e88ce, type: 2}
+    frontSprite: {fileID: 21300000, guid: d970bf74e3ec4734187fe31a173f8b08, type: 3}
+    backSprite: {fileID: 21300000, guid: cc0f28fe289d842438a87788b331e614, type: 3}
+  - fastenerSprite: {fileID: 11400000, guid: 9752fab64061eb04389018609a86cbfd, type: 2}
+    frontSprite: {fileID: 21300000, guid: 8561d0154b16812449c2f6bc775b01aa, type: 3}
+    backSprite: {fileID: 21300000, guid: 2129693677fa15a469d443d698ee7f2f, type: 3}
+  - fastenerSprite: {fileID: 11400000, guid: 746ab4f001d7d2e41b58758356246c72, type: 2}
+    frontSprite: {fileID: 21300000, guid: 2129693677fa15a469d443d698ee7f2f, type: 3}
+    backSprite: {fileID: 21300000, guid: d5bc349df07144648950d3d75ac48b94, type: 3}

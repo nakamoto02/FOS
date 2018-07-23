@@ -1,0 +1,4 @@
+﻿interface IFAutoBack
+{
+    void AutoBackMove();
+}
