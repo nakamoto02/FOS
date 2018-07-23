@@ -3,7 +3,7 @@ using FOS.Scene;
 
 public class TouchManager : MonoBehaviour
 {
-    //シングルトン
+    // シングルトン
     static public TouchManager instance;
 
     void Awake()
@@ -17,16 +17,16 @@ public class TouchManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        //読み込み
+        // 読み込み
         touchEffect = Resources.Load("Effect/TouchEffect") as GameObject;
     }
     //-----------------------------------------------------
     //  Private
     //-----------------------------------------------------
-    GameObject touchEffect;                         //EffectのPrefab
-    BaseSlider[] sliderArr = new BaseSlider[10];    //現在タッチ中のSliderの配列
-    BaseSlider sliderColl;                          //現在タッチ中のSlider
-    bool isOn = true;                               //機能フラグ
+    GameObject touchEffect;                         // EffectのPrefab
+    BaseSlider[] sliderArr = new BaseSlider[10];    // 現在タッチ中のSliderの配列
+    BaseSlider sliderColl;                          // 現在タッチ中のSlider
+    bool isOn = true;                               // 機能フラグ
     //-----------------------------------------------------
     //  Update
     //-----------------------------------------------------
@@ -35,9 +35,9 @@ public class TouchManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) TouchEffect();
         if (!isOn) return;
 
-        //タッチパネル
+        // タッチパネル
         if (Input.touchSupported) Touch();
-        //マウス
+        // マウス
         else Click();
 	}
     //-----------------------------------------------------
@@ -47,6 +47,28 @@ public class TouchManager : MonoBehaviour
     {
         Vector3 createPos = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Instantiate(touchEffect, createPos, Quaternion.identity);
+    }
+    //-----------------------------------------------------
+    //  登録
+    //-----------------------------------------------------
+    delegate void ITouchBegan(Vector2 pos);
+    delegate void ITouchMove(Vector2 pos);
+    delegate void ITouchEnd();
+
+    ITouchBegan tBegan;
+    ITouchMove  tMove;
+    ITouchEnd   tEnd;
+    void AddTouchObject(ITouch touchObj)
+    {
+        tBegan += touchObj.TouchBegan;
+        tMove  += touchObj.TouchMove;
+        tEnd   += touchObj.TouchEnd;
+    }
+    void RemoveTouchObject(ITouch touchObj)
+    {
+        tBegan -= touchObj.TouchBegan;
+        tMove  -= touchObj.TouchMove;
+        tEnd   -= touchObj.TouchEnd;
     }
     //-----------------------------------------------------
     //  Touch

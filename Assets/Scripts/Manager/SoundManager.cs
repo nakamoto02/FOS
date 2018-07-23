@@ -58,7 +58,7 @@ namespace FOS.Sound
 
             //読み込み
             bgmSound = Resources.LoadAll<AudioClip>("Sound/BGM");
-            seSound = Resources.LoadAll<AudioClip>("Sound/SE");
+            seSound  = Resources.LoadAll<AudioClip>("Sound/SE");
             seFSound = Resources.LoadAll<AudioClip>("Sound/SEF");
         }
         //-------------------------------------------------
