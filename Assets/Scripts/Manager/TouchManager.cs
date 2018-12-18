@@ -8,6 +8,8 @@ public class TouchManager : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("TouchManager");
+
         if (instance == null)
         {
             instance = this;
@@ -19,21 +21,31 @@ public class TouchManager : MonoBehaviour
         }
         // 読み込み
         touchEffect = Resources.Load("Effect/TouchEffect") as GameObject;
+
+        // リセット
+        tObjCount = 0;
     }
     //-----------------------------------------------------
     //  Private
     //-----------------------------------------------------
-    GameObject touchEffect;                         // EffectのPrefab
-    BaseSlider[] sliderArr = new BaseSlider[10];    // 現在タッチ中のSliderの配列
-    BaseSlider sliderColl;                          // 現在タッチ中のSlider
-    bool isOn = true;                               // 機能フラグ
+    GameObject touchEffect;     // EffectのPrefab
+    bool isOn = true;           // 機能フラグ
+    int tObjCount;
     //-----------------------------------------------------
-    //  Update
+    //  Delegate
     //-----------------------------------------------------
-	void Update ()
+    delegate void TouchBegan(Vector2 pos);
+    delegate void TouchMove(Vector2 pos);
+    delegate void TouchEnd();
+
+    TouchBegan tBegan;
+    TouchMove tMove;
+    TouchEnd tEnd;
+    //=====================================================
+    void Update ()
     {
         if (Input.GetMouseButtonDown(0)) TouchEffect();
-        if (!isOn) return;
+        if (!isOn || tObjCount < 1) return;
 
         // タッチパネル
         if (Input.touchSupported) Touch();
@@ -51,79 +63,38 @@ public class TouchManager : MonoBehaviour
     //-----------------------------------------------------
     //  登録
     //-----------------------------------------------------
-    delegate void ITouchBegan(Vector2 pos);
-    delegate void ITouchMove(Vector2 pos);
-    delegate void ITouchEnd();
-
-    ITouchBegan tBegan;
-    ITouchMove  tMove;
-    ITouchEnd   tEnd;
-    void AddTouchObject(ITouch touchObj)
+    public void AddTouchObject(ITouch touchObj)
     {
         tBegan += touchObj.TouchBegan;
         tMove  += touchObj.TouchMove;
         tEnd   += touchObj.TouchEnd;
+        ++tObjCount;
     }
-    void RemoveTouchObject(ITouch touchObj)
+    //-----------------------------------------------------
+    //  削除
+    //-----------------------------------------------------
+    public void RemoveTouchObject(ITouch touchObj)
     {
         tBegan -= touchObj.TouchBegan;
         tMove  -= touchObj.TouchMove;
         tEnd   -= touchObj.TouchEnd;
+        --tObjCount;
     }
     //-----------------------------------------------------
     //  Touch
     //-----------------------------------------------------
     void Touch()
     {
-        if (Input.touchCount < 1) return;
-
-        foreach (Touch t in Input.touches)
+        switch(Input.touches[0].phase)
         {
-            if (t.fingerId == 0)
-            {
-                switch (t.phase)
-                {
-                    //指が触れたとき
-                    case TouchPhase.Began:
-                        TouchBegan(t.fingerId);
-                        break;
-
-                    //指が離されたとき
-                    case TouchPhase.Ended:
-                        TouchEnd(t.fingerId);
-                        break;
-                    //キャンセル
-                    case TouchPhase.Canceled:
-                        TouchEnd(t.fingerId);
-                        break;
-                }
-            }
-        }
-    }
-    //-----------------------------------------------------
-    //  指が触れたとき
-    //-----------------------------------------------------
-    void TouchBegan(int id)
-    {
-        //Collider
-        Collider2D coll = TouchCollider2D(id);
-
-        //判定
-        if (coll && coll.tag == "Slider")
-        {
-            sliderArr[id] = coll.GetComponent<BaseSlider>();
-            sliderArr[id].SliderTouchDown(id);
-        }
-    }
-    //-----------------------------------------------------
-    //  指が離れたとき
-    //-----------------------------------------------------
-    void TouchEnd(int id)
-    {
-        if (sliderArr[id])
-        {
-            sliderArr[id].SliderTouchUp();
-            sliderArr[id] = null;
+            // 指が触れたとき
+            case TouchPhase.Began:    tBegan(Input.touches[0].position); break;
+            // 触れている間
+            case TouchPhase.Moved:    tMove(Input.touches[0].position); break;
+            // 離れたとき
+            case TouchPhase.Ended:    tEnd(); break;
+            // キャンセルされたとき
+            case TouchPhase.Canceled: tEnd(); break;
         }
     }
     //-----------------------------------------------------
@@ -131,65 +102,15 @@ public class TouchManager : MonoBehaviour
     //-----------------------------------------------------
     void Click()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            //Collider
-            Collider2D coll = TouchCollider2D(-1);
-
-            if (coll && coll.tag == "Slider")
-            {
-                sliderColl = coll.GetComponent<BaseSlider>();
-                sliderColl.SliderTouchDown(-1);
-            }
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            if (sliderColl != null)
-            {
-                sliderColl.SliderTouchUp();
-                sliderColl = null;
-            }
-        }
+        // クリックされたとき
+        if (Input.GetMouseButtonDown(0)) tBegan(Input.mousePosition);
+        // クリックされている間
+        if (Input.GetMouseButton(0))     tMove(Input.mousePosition);
+        // 離れたとき
+        if (Input.GetMouseButtonUp(0))   tEnd();
     }
     //-----------------------------------------------------
     //  機能の ON/OFF
     //-----------------------------------------------------
     public void TouchSwitch(bool flg) { isOn = flg; }
-    //-----------------------------------------------------
-    //  タッチしたCollider
-    //-----------------------------------------------------
-    Collider2D TouchCollider2D (int id)
-    {
-        //タッチ位置を取得
-        Vector2 touchPos = (id != -1) ? Input.touches[id].position : (Vector2)Input.mousePosition;
-        //タッチ位置をWorld座標に
-        touchPos = Camera.main.ScreenToWorldPoint(touchPos);
-
-        //GameScene以外なら
-        if (!SceneOption.instance.IsSceneName("GameScene")) return Physics2D.OverlapPoint(touchPos);
-
-        //タッチ位置にあるColloder2D
-        Collider2D[] colls = Physics2D.OverlapPointAll(touchPos);
-        Collider2D touchColl = null;
-        //タッチ位置に一番近いCollider
-        foreach(Collider2D coll in colls)
-        {
-            if(coll.tag == "Slider")
-            {
-                touchColl = ColliderCheck(coll, touchColl, touchPos);
-            }
-        }
-        return touchColl;
-    }
-    //-----------------------------------------------------
-    //  近いColliderを返す
-    //-----------------------------------------------------
-    Collider2D ColliderCheck(Collider2D value, Collider2D near, Vector2 pos)
-    {
-        if (near == null) return value;
-        float touchToValue = ((Vector2)value.transform.position - pos).magnitude;
-        float touchToNear = ((Vector2)near.transform.position - pos).magnitude;
-        if (touchToValue < touchToNear) return value;
-        return near;
-    }
 }

@@ -7,6 +7,7 @@ public class ManagerSceneAutoLoader : MonoBehaviour
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void LoadManagerScene()
     {
+        Debug.Log("ManagerScene");
         string managerSceneName = "ManagerScene";
 
         //ManagerSceneが有効でない時(まだ読み込んでいない時)だけ追加ロードするように

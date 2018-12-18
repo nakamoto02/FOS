@@ -3,9 +3,10 @@ guid: a394e4901b78a4e04a0a05a8faf4f0dd
 timeCreated: 1459295870
 licenseType: Store
 MonoImporter:
+  externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
-  executionOrder: -100
+  executionOrder: -200
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

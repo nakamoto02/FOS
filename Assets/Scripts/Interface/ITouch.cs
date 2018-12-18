@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 
-interface ITouch
+public interface ITouch
 {
-    void TouchBegan(Vector2 pos);
-    void TouchMove(Vector2 pos);
+    void TouchBegan(Vector2 tPos);
+    void TouchMove(Vector2 tPos);
     void TouchEnd();
+    bool IsTouchRange(Vector2 tPos);
 }
